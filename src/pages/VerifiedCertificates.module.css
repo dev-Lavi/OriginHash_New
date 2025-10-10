@@ -1,0 +1,165 @@
+/* Container padding and layout */
+.container {
+  padding: 24px;
+}
+
+/* Heading: "Verified Certificates" */
+.heading {
+  font-weight: 600;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+/* Subheadings: Today, Yesterday, Earlier */
+.sectionTitle {
+  color: #5f41d9;
+  font-size: 18px;
+  margin: 20px 0 10px;
+}
+
+/* Common style for both header and data rows */
+.row {
+  display: grid;
+  grid-template-columns: 1.5fr 1.5fr 2fr 1.5fr 1.5fr 2fr 1fr;
+  background-color: #ffffff;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  font-size: 14px;
+  align-items: center;
+  word-break: break-word;
+}
+
+/* Header row */
+.headerRow {
+  background-color: #e6e6e6;
+  font-weight: bold;
+}
+
+/* Payment status styling */
+.success {
+  color: green;
+  font-weight: 600;
+}
+
+.failed {
+  color: red;
+  font-weight: 600;
+}
+
+/* Responsive design */
+@media screen and (max-width: 1024px) {
+  .row {
+    grid-template-columns: repeat(2, 1fr);
+    font-size: 13px;
+  }
+
+  .headerRow {
+    display: none; /* Hide header on small screens */
+  }
+
+  .sectionTitle {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .row {
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+  }
+
+  .row > div {
+    margin: 4px 0;
+  }
+}
+
+.container {
+  padding: 24px;
+}
+
+.heading {
+  font-weight: 600;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.sectionTitle {
+  color: #5f41d9;
+  font-size: 18px;
+  margin: 20px 0 10px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1.5fr 1.5fr 2fr 1.5fr 1.5fr 2fr 1fr;
+  background-color: #ffffff;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  font-size: 14px;
+  align-items: center;
+  word-break: break-word;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.4s ease forwards;
+}
+
+.fadeIn {
+  animation-name: fadeInUp;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.headerRow {
+  background-color: #e6e6e6;
+  font-weight: bold;
+}
+
+.success {
+  color: green;
+  font-weight: 600;
+}
+
+.failed {
+  color: red;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 1024px) {
+  .row {
+    grid-template-columns: repeat(2, 1fr);
+    font-size: 13px;
+  }
+
+  .headerRow {
+    display: none;
+  }
+
+  .sectionTitle {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .row {
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+  }
+
+  .row > div {
+    margin: 4px 0;
+  }
+}
+

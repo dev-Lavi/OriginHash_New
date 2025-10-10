@@ -1,0 +1,129 @@
+/* src/pages/VerifiedCertificates.module.css */
+
+.wrapper {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+  overflow-x: auto;
+}
+
+.pageTitle {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #222;
+}
+
+/* Table header (Desktop & Tablet) */
+.tableHeader {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background-color: #E5E7EB;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #333;
+  min-width: 840px; /* Ensures horizontal scroll if needed */
+}
+
+.section {
+  margin-top: 24px;
+}
+
+.sectionTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #7568FF;
+}
+
+/* Card rows (Desktop & Tablet) */
+.card {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background-color: white;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  font-size: 0.9rem;
+  color: #333;
+  min-width: 840px; /* Match header for alignment */
+}
+
+.card > div {
+  display: flex;
+  align-items: center;
+  overflow-wrap: anywhere;
+}
+
+.card > div {
+  padding: 6px 8px !important; /* Adds breathing room for all cells */
+}
+
+/* Status badges */
+.successStatus,
+.failedStatus {
+  display: inline-flex; /* shrink to text size + padding */
+  align-items: center;  /* vertical center */
+  justify-content: center; /* horizontal center */
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap; /* prevent wrapping */
+}
+
+.successStatus {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.failedStatus {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+/* Tablet view: keep all columns but allow scroll */
+@media (max-width: 1024px) {
+  .wrapper {
+    padding: 10px;
+  }
+
+  .tableHeader,
+  .card {
+    grid-template-columns: repeat(7, minmax(120px, 1fr));
+    overflow-x: auto;
+  }
+}
+
+/* Mobile view: stack rows */
+@media (max-width: 768px) {
+  .tableHeader {
+    display: none;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    min-width: auto;
+  }
+
+  .card > div {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    font-size: 0.88rem;
+  }
+
+  /* Add labels for mobile */
+  .card > div::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #555;
+    margin-right: 8px;
+    flex-shrink: 0;
+  }
+}

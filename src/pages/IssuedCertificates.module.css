@@ -1,0 +1,107 @@
+.wrapper { 
+  padding: 20px 40px;
+}
+
+.pageTitle {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.tableHeader, .certificateRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.5fr 1fr 1fr 1.5fr 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.tableHeader {
+  background-color: #f3f3f3;
+  font-weight: 600;
+}
+
+.certificateRow {
+  background-color: #ffffff;
+  box-shadow: 0 0 4px rgba(0,0,0,0.1);
+  margin-bottom: 12px;
+}
+
+.sectionLabel {
+  margin: 24px 0 8px;
+  font-weight: 600;
+  color: #764edb;
+  font-size: 16px;
+}
+
+.previewBtn {
+  text-decoration: none;
+  color: #fff;
+  background-color: #764edb;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.loading {
+  padding: 20px;
+  font-size: 16px;
+  text-align: center;
+  color: #555;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { opacity: 0.4; }
+}
+
+/* -------------------
+   RESPONSIVE STYLES
+-------------------- */
+@media (max-width: 786px) {
+  .wrapper {
+    padding: 15px;
+  }
+
+  .pageTitle {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .tableHeader {
+    display: none; /* Hide table header on small screens */
+  }
+
+ .certificateRow {
+    grid-template-columns: 1fr;
+    font-size: 14px;
+    padding: 15px;
+    border-radius: 8px;
+  }
+
+  .certificateRow > div {
+    display: block; /* instead of flex */
+    text-align: center; /* center the content */
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .certificateRow > div:last-child {
+    border-bottom: none;
+  }
+
+  /* If using data-label for labels, stack them above value */
+  .certificateRow > div::before {
+    content: attr(data-label);
+    display: block;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 4px;
+    text-align: center;
+  }
+}

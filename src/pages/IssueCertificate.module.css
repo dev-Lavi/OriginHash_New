@@ -1,0 +1,208 @@
+.issueWrapper {
+  padding: 32px 40px;
+  box-sizing: border-box;
+  min-height: 80vh;
+  background: #f7f9fa;
+}
+
+.issueWrapper h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 32px;
+  color: #2d355b;
+}
+
+.issueContainer {
+  display: flex;
+  gap: 42px;
+  align-items: flex-start;
+}
+
+.previewSection {
+  flex: 1 1 45%;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(80,100,180,0.06);
+  padding: 28px 22px;
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-right: 16px;
+}
+
+.previewSection h3 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 18px;
+  color: #4169e1;
+  letter-spacing: 1px;
+}
+
+.certificatePreview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 270px;
+  justify-content: center;
+  gap: 18px;
+}
+
+.certificateCard {
+  background: linear-gradient(135deg, #eaf1fb 70%, #f7fafc 100%);
+  border-radius: 10px;
+  padding: 28px 24px;
+  text-align: center;
+  width: 100%;
+  max-width: 370px;
+  box-shadow: 0 2px 16px rgba(140,160,210,0.13);
+  color: #23265c;
+  margin-bottom: 6px;
+}
+
+.certificateTitle {
+  font-size: 1.055rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 16px;
+  color: #2061ca;
+}
+
+.certificateRecipient {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-bottom: 7px;
+  color: #21396a;
+}
+
+.certificateCourse {
+  font-size: 1.10rem;
+  margin-bottom: 11px;
+  color: #34559c;
+}
+
+.certificateDates {
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  color: #737fb3;
+}
+
+.certificateId {
+  font-size: 0.93rem;
+  color: #5768ad;
+  margin-top: 2px;
+}
+
+.downloadLink {
+  margin-top: 8px;
+  font-size: 0.98rem;
+  color: #2b6cdd;
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: color 0.15s;
+}
+.downloadLink:hover {
+  color: #2045a7;
+}
+
+.placeholderPreview {
+  width: 90%;
+  padding: 32px 0;
+  color: #b6becc;
+  text-align: center;
+  font-size: 1.09rem;
+  border: 2px dashed #d5dbef;
+  border-radius: 9px;
+  background: #f8faff;
+}
+
+.formSection {
+  flex: 1 1 40%;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(80,100,180,0.08);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 330px;
+  max-width: 400px;
+}
+
+.formSection label {
+  font-size: 1rem;
+  color: #2c3574;
+  font-weight: 500;
+  margin-bottom: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.formSection input[type="text"],
+.formSection input[type="email"],
+.formSection input[type="date"] {
+  background: #f7faff;
+  border: 1px solid #bed0f8;
+  border-radius: 8px;
+  padding: 9px 13px;
+  font-size: 1rem;
+  color: #35396c;
+  outline: none;
+  transition: border-color 0.17s;
+}
+
+.formSection input:focus {
+  border: 1.7px solid #3469ed;
+  background: #f2f7ff;
+}
+
+.formSection button {
+  margin-top: 16px;
+  padding: 11px 0;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #3369e7 60%, #43b2fd 100%);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 1.1px;
+  cursor: pointer;
+  transition: background 0.17s;
+  box-shadow: 0 1px 2px rgba(80,100,200,0.13);
+}
+
+.formSection button:disabled {
+  background: #aac5ef;
+  color: #f0f0ff;
+  cursor: not-allowed;
+}
+
+.error {
+  color: #e04040;
+  margin-top: 11px;
+  background: #ffecec;
+  border-radius: 7px;
+  padding: 7px 13px;
+  font-size: 0.99rem;
+  border-left: 4px solid #d02525;
+}
+
+@media (max-width: 950px) {
+  .issueContainer {
+    flex-direction: column;
+    gap: 28px;
+  }
+  .formSection, .previewSection {
+    max-width: 100%;
+    margin-right: 0;
+  }
+}

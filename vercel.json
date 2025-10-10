@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/auth/:match*",
+      "destination": "https://originhash-backend.onrender.com/auth/:match*"
+    },
+    {
+      "source": "/api/:match*",
+      "destination": "https://originhash-backend.onrender.com/api/:match*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+.verify-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 70px); /* adjust if you have header height */
+  background: #f8f9ff;
+}
+
+.verify-card {
+  background: white;
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 400px;
+}
+
+.verify-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+.verify-button {
+  background-color: #6a5ae0;
+  color: white;
+  padding: 0.75rem 1rem;
+  border: none;
+  width: 100%;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.verify-button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+.error-text {
+  color: red;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.icon-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}

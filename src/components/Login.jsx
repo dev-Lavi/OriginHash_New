@@ -79,19 +79,23 @@ const handleSubmit = async (e) => {
 
 
 return (
-    <div className="min-h-screen bg-[#452883] flex items-center justify-center relative font-sans">
+    <div className="min-h-screen bg-[#452883] flex items-center justify-center relative font-sans p-4 sm:p-6 md:p-8">
         <img
-    src={Abstract3D}
-    alt="3D Abstract Layer"
-    className="absolute top-0 left-0 w-[700px] h-auto z-20 pointer-events-none"
-    style={{ maxWidth: '900px' }}
-  />
+  src={Abstract3D}
+  alt="3D Abstract Layer"
+  className="absolute top-0 left-0 w-full md:w-[60%] lg:w-[700px] h-auto z-20 pointer-events-none md:opacity-100"
+/>
       
       {/* Left Panel */}
       <div className="hidden xl:flex flex-col justify-between w-1/2 h-[700px] pt-[400px] py-10 pl-16 pr-12">
   <div>
     <div className="flex items-center mb-3">
-      <img src={Logo} alt="OriginHash Logo" className="w-14 h-14 mr-3" />
+      <img
+  src={Logo}
+  alt="OriginHash Logo"
+  className="w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 mr-2 sm:mr-3"
+  loading="lazy"
+/>
       <span className="text-white text-3xl font-bold tracking-wide">OriginHash</span>
     </div>
      <h4 className="font-semibold text-white text-3xl mb-8 leading-tight" style={{ maxWidth: "570px" }}>
@@ -111,15 +115,17 @@ return (
 
       
       {/* Form Card */}
-      <div className="flex flex-col justify-center items-center w-full xl:w-[52%] min-h-[550px] xl:min-h-screen px-4 xl:pr-[60px] py-14 xl:py-0">
-         <div className="bg-[#4d388d] rounded-[32px] xl:rounded-[43px] border-2 border-[#7764ad] shadow-xl xl:shadow-2xl w-full max-w-[410px] xl:max-w-[510px] px-6 xl:px-[45px] py-9 xl:pt-[34px] xl:pb-[34px] z-20">
-             <h2 className="text-white font-semibold text-2xl xl:text-3xl mb-7 xl:mb-[35px] text-left">Log in to OriginHash</h2>
+      <div className="flex flex-col justify-center items-center w-full md:w-[80%] lg:w-[52%] min-h-[unset] md:min-h-[550px] xl:min-h-screen px-4 md:px-6 xl:pr-[60px] py-8 md:py-14 xl:py-0">
+         <div className="bg-[#4d388d] rounded-[24px] md:rounded-[32px] xl:rounded-[43px] border-2 border-[#7764ad] shadow-xl xl:shadow-2xl w-full max-w-[410px] xl:max-w-[510px] px-4 sm:px-6 xl:px-[45px] py-6 sm:py-9 xl:pt-[34px] xl:pb-[34px] z-20">
+             <h2 className="text-white font-semibold text-xl sm:text-2xl xl:text-3xl mb-4 sm:mb-7 xl:mb-[35px] text-left">
+  Log in to OriginHash
+</h2>
           
              <form className="flex flex-col gap-2 xl:gap-3" onSubmit={handleSubmit}>
   {/* Email Field */}
   <div>
               <label htmlFor="email" className="block font-medium text-white mb-1 text-sm">Your Email</label>
-              <div className="flex flex-row-reverse items-center border-2 border-[#7764ad] rounded-[8px] bg-[#4d388d] px-3 xl:px-3 py-3 focus-within:border-[#a1dbec] transition">
+              <div className="flex flex-row-reverse items-center border-2 border-[#7764ad] rounded-[8px] bg-[#4d388d] px-2 sm:px-3 xl:px-3 py-2.5 sm:py-3 focus-within:border-[#a1dbec] transition">
                 <FaUser className="text-[#a1dbec] ml-1 text-base" />
                 <input
                   id="email"
@@ -135,7 +141,7 @@ return (
   {/* Password Field */}
    <div>
               <label htmlFor="password" className="block font-medium text-white mb-1 text-sm">Your Password</label>
-              <div className="flex flex-row-reverse items-center border-2 border-[#7764ad] rounded-[8px] bg-[#4d388d] px-3 xl:px-3 py-3 focus-within:border-[#a1dbec] transition">
+              <div className="flex flex-row-reverse items-center border-2 border-[#7764ad] rounded-[8px] bg-[#4d388d] px-2 sm:px-3 xl:px-3 py-2.5 sm:py-3 focus-within:border-[#a1dbec] transition">
                 <FaLock className="text-[#a1dbec] ml-1 text-base" />
                 <input
                   id="password"

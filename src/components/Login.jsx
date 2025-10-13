@@ -124,8 +124,8 @@ return (
                 <input
                   id="email"
                   type="email"
-                  className="bg-transparent text-white text-sm w-full outline-none placeholder:text-white/40"
-                  placeholder="test123@gmail.com"
+                  className="bg-transparent text-white text-sm w-full outline-none "
+                  placeholder="Your Email"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                   autoComplete="username"

@@ -112,7 +112,7 @@ const CoursesContent = () => {
   };
 
   return (
-    <div className="flex-1 bg-gray-50 p-8">
+    <div className="flex-1 bg-gray-50 p-8 lg:ml-64">
       <div className="mb-8">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-bold text-gray-800">My Courses</h1>

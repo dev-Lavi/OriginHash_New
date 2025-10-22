@@ -6,6 +6,7 @@ import axiosInstance from "../api/axiosInstance";
 
 const VerifiedCertificates = () => {
   const [certificates, setCertificates] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchVerifiedCertificates = async () => {
@@ -26,6 +27,8 @@ const VerifiedCertificates = () => {
         }
       } catch (error) {
         console.error("Error fetching certificates:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -64,39 +67,53 @@ const VerifiedCertificates = () => {
   );
 
   return (
-    <div className={styles.container}>
-      <h2 className={styles.heading}>Verified Certificates</h2>
+    <div className="min-h-screen bg-gray-50 lg:ml-64">
+      <div className="p-6 lg:p-8 max-w-7xl mx-auto">
+        <h2 className="text-3xl font-bold text-gray-900 mb-6">Verified Certificates</h2>
 
-      <div className={`${styles.row} ${styles.headerRow}`}>
-        <div>Verified by</div>
-        <div>Course</div>
-        <div>Contact</div>
-        <div>Issue Date</div>
-        <div>Expiry Date</div>
-        <div>Certificate ID</div>
-        <div>Payment</div>
+        <div className={styles.container}>
+          <div className={`${styles.row} ${styles.headerRow}`}>
+            <div>Verified by</div>
+            <div>Course</div>
+            <div>Contact</div>
+            <div>Issue Date</div>
+            <div>Expiry Date</div>
+            <div>Certificate ID</div>
+            <div>Payment</div>
+          </div>
+
+          {loading ? (
+            <div className="text-center py-8 text-gray-500">Loading certificates...</div>
+          ) : certificates.length === 0 ? (
+            <div className="text-center py-12 text-gray-500">
+              <p className="text-lg">No verified certificates found.</p>
+            </div>
+          ) : (
+            <>
+              {today.length > 0 && (
+                <>
+                  <h3 className={styles.sectionTitle}>Today</h3>
+                  {today.map((cert, i) => renderCertificateRow(cert, i))}
+                </>
+              )}
+
+              {yesterday.length > 0 && (
+                <>
+                  <h3 className={styles.sectionTitle}>Yesterday</h3>
+                  {yesterday.map((cert, i) => renderCertificateRow(cert, i))}
+                </>
+              )}
+
+              {older.length > 0 && (
+                <>
+                  <h3 className={styles.sectionTitle}>Earlier</h3>
+                  {older.map((cert, i) => renderCertificateRow(cert, i))}
+                </>
+              )}
+            </>
+          )}
+        </div>
       </div>
-
-      {today.length > 0 && (
-        <>
-          <h3 className={styles.sectionTitle}>Today</h3>
-          {today.map((cert, i) => renderCertificateRow(cert, i))}
-        </>
-      )}
-
-      {yesterday.length > 0 && (
-        <>
-          <h3 className={styles.sectionTitle}>Yesterday</h3>
-          {yesterday.map((cert, i) => renderCertificateRow(cert, i))}
-        </>
-      )}
-
-      {older.length > 0 && (
-        <>
-          <h3 className={styles.sectionTitle}>Earlier</h3>
-          {older.map((cert, i) => renderCertificateRow(cert, i))}
-        </>
-      )}
     </div>
   );
 };

@@ -54,7 +54,7 @@ const IssueCertificate = () => {
   };
 
   return (
-    <div className="container py-4">
+    <div className="min-h-screen bg-gray-50 p-6 lg:ml-64">
       <ToastContainer />
       <h2 className="text-center mb-4 fw-bold">📜 Issue Certificate</h2>
 

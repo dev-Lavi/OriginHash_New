@@ -8,7 +8,6 @@ import JavaScript from "../assets/courses/javascript.jpg";
 import reactImg from "../assets/courses/react.jpg";
 import sql from "../assets/courses/sql.jpg";
 import kotlin from "../assets/courses/kotlin.jpg";
-import styles from './Dashboard.module.css';
 
 // Example course categories
 const categories = ["All", "Frontend", "Backend", "Mobile", "Database"];
@@ -20,40 +19,18 @@ const mockCourses = [
   { id: 4, title: 'Complete Kotlin', thumbnail: kotlin, creator: 'Dr. Angela Yu', category: 'Mobile', rating: 4.9, reviews: 1567 }
 ];
 
-function FilterPanel({ selectedCategory, setSelectedCategory, minRating, setMinRating }) {
-  return (
-    <div className="w-64 space-y-6 p-4 border-r bg-gray-50">
-      <div>
-        <label className="block font-bold mb-1">Category</label>
-        <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-          <SelectTrigger className="w-full">
-            <SelectValue placeholder="Select a category" />
-          </SelectTrigger>
-          <SelectContent>
-            {categories.map(cat => (
-              <SelectItem key={cat} value={cat}>
-                {cat}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
-    </div>
-  );
-}
-
 function CourseCard({ course }) {
   return (
-    <Card className="p-4 flex flex-col items-stretch h-full">
-      <img src={course.thumbnail} alt={course.title} className="rounded h-32 object-cover mb-2" />
-      <h4 className="font-bold mt-2">{course.title}</h4>
-      <span className="text-sm text-gray-500 mb-1">{course.creator}</span>
-      <span className="text-xs text-indigo-600 mb-1">{course.category}</span>
-      <div className="flex items-center space-x-2">
-        <span>{"★".repeat(Math.floor(course.rating))}</span>
-        <span className="text-sm text-gray-400">({course.reviews})</span>
+    <Card className="p-4 flex flex-col items-stretch h-full hover:shadow-lg transition-shadow">
+      <img src={course.thumbnail} alt={course.title} className="rounded h-40 object-cover mb-3" />
+      <h4 className="font-bold text-lg mt-2">{course.title}</h4>
+      <span className="text-sm text-gray-600 mb-1">{course.creator}</span>
+      <span className="text-xs text-indigo-600 mb-2">{course.category}</span>
+      <div className="flex items-center space-x-2 mb-3">
+        <span className="text-yellow-500">{"★".repeat(Math.floor(course.rating))}</span>
+        <span className="text-sm text-gray-500">({course.reviews})</span>
       </div>
-      <Button className="mt-2" variant="default">Know more</Button>
+      <Button className="mt-auto" variant="default">Know more</Button>
     </Card>
   );
 }
@@ -82,18 +59,20 @@ export default function Dashboard() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <main className="p-8 max-w-7xl mx-auto">
-        {/* Header and Filters on one row */}
-        <div className="flex flex-col sm:flex-row items-center justify-between mb-8 space-y-4 sm:space-y-0">
+    // Added lg:ml-64 to create space for the sidebar on large screens
+    <div className="min-h-screen bg-gray-50 lg:ml-64">
+      <main className="p-6 lg:p-8 max-w-7xl mx-auto">
+        {/* Header and Filters */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
           <div>
-            <h2 className="text-3xl font-bold">Explore Our Courses</h2>
+            <h2 className="text-3xl font-bold text-gray-900">Explore Our Courses</h2>
             <p className="text-gray-600 mt-1">Browse, filter, and find your next skill!</p>
           </div>
-          <div className="flex space-x-4">
+          
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             {/* Category filter */}
-            <div className="w-48">
-              <label className="block font-bold mb-1">Category</label>
+            <div className="w-full sm:w-48">
+              <label className="block font-semibold mb-2 text-sm">Category</label>
               <Select value={selectedCategory} onValueChange={setSelectedCategory}>
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select a category" />
@@ -107,9 +86,10 @@ export default function Dashboard() {
                 </SelectContent>
               </Select>
             </div>
+            
             {/* Minimum rating filter */}
-            <div className="w-48">
-              <label className="block font-bold mb-1">Minimum Rating</label>
+            <div className="w-full sm:w-48">
+              <label className="block font-semibold mb-2 text-sm">Minimum Rating</label>
               <Input
                 type="number"
                 min={0}
@@ -117,35 +97,47 @@ export default function Dashboard() {
                 step={0.1}
                 value={minRating}
                 onChange={(e) => setMinRating(Number(e.target.value))}
-                placeholder="Min rating"
+                placeholder="0"
                 className="w-full"
               />
             </div>
           </div>
         </div>
 
+        {/* Course Grid */}
         {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {Array(6)
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {Array(8)
               .fill(0)
               .map((_, i) => (
                 <Card key={i} className="p-4 animate-pulse flex flex-col">
-                  <Skeleton className="h-32 rounded mb-2" />
-                  <Skeleton className="h-6 w-2/3 mb-1" />
+                  <Skeleton className="h-40 rounded mb-3" />
+                  <Skeleton className="h-6 w-2/3 mb-2" />
                   <Skeleton className="h-4 w-1/3 mb-2" />
-                  <Skeleton className="h-4 w-1/4" />
+                  <Skeleton className="h-4 w-1/4 mb-3" />
+                  <Skeleton className="h-10 w-full" />
                 </Card>
               ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredCourses.length > 0 ? (
               filteredCourses.map((course) => (
                 <CourseCard key={course.id} course={course} />
               ))
             ) : (
-              <div className="col-span-full text-xl text-gray-500 flex items-center my-16">
-                No courses found for selected filters.
+              <div className="col-span-full text-center py-16">
+                <p className="text-xl text-gray-500">No courses found for selected filters.</p>
+                <Button 
+                  variant="outline" 
+                  className="mt-4"
+                  onClick={() => {
+                    setSelectedCategory("All");
+                    setMinRating(0);
+                  }}
+                >
+                  Clear Filters
+                </Button>
               </div>
             )}
           </div>
@@ -154,4 +146,3 @@ export default function Dashboard() {
     </div>
   );
 }
-

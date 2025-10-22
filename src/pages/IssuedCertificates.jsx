@@ -5,9 +5,8 @@ import { format } from 'date-fns';
 import { isToday, isYesterday } from 'date-fns';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { motion, AnimatePresence } from 'framer-motion'; // ✅ Import Framer Motion
+import { motion, AnimatePresence } from 'framer-motion';
 import axiosInstance from '../api/axiosInstance';
-
 
 const IssuedCertificates = () => {
   const [certificates, setCertificates] = useState([]);
@@ -71,7 +70,7 @@ const IssuedCertificates = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3, delay: index * 0.05 }} // ✅ stagger effect
+              transition={{ duration: 0.3, delay: index * 0.05 }}
             >
               <div>{cert.studentName}</div>
               <div>{cert.courseName}</div>
@@ -97,29 +96,34 @@ const IssuedCertificates = () => {
   };
 
   return (
-    <div className={styles.wrapper}>
-      <ToastContainer />
-      <h2 className={styles.pageTitle}>Issued Certificates</h2>
+    <div className="min-h-screen bg-gray-50 lg:ml-64">
+      <div className="p-6 lg:p-8 max-w-7xl mx-auto">
+        <ToastContainer />
+        
+        <h2 className="text-3xl font-bold text-gray-900 mb-6">Issued Certificates</h2>
 
-      <div className={styles.tableHeader}>
-        <div>Issued to</div>
-        <div>Course</div>
-        <div>Contact</div>
-        <div>Issue Date</div>
-        <div>Expiry Date</div>
-        <div>Certificate ID</div>
-        <div>Preview</div>
+        <div className={styles.wrapper}>
+          <div className={styles.tableHeader}>
+            <div>Issued to</div>
+            <div>Course</div>
+            <div>Contact</div>
+            <div>Issue Date</div>
+            <div>Expiry Date</div>
+            <div>Certificate ID</div>
+            <div>Preview</div>
+          </div>
+
+          {loading ? (
+            <div className={styles.loading}>Loading certificates...</div>
+          ) : (
+            <>
+              {renderSection("Today", today)}
+              {renderSection("Yesterday", yesterday)}
+              {renderSection("Earlier", older)}
+            </>
+          )}
+        </div>
       </div>
-
-      {loading ? (
-        <div className={styles.loading}>Loading certificates...</div> // ✅ Custom loader class
-      ) : (
-        <>
-          {renderSection("Today", today)}
-          {renderSection("Yesterday", yesterday)}
-          {renderSection("Earlier", older)}
-        </>
-      )}
     </div>
   );
 };

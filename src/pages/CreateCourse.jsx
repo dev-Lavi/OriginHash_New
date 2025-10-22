@@ -93,7 +93,7 @@ export default function CreateCourse() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 lg:ml-64">
       {/* Header */}
       <header className="bg-white border-b border-gray-200 px-4 sm:px-8 py-4">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">

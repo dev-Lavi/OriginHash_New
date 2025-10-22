@@ -30,6 +30,9 @@ import AdminCourses from "./pages/AdminCourses";
 import AuthLayout from "./components/AuthLayout";
 import Footerauth from "./components/Footerauth";
 import CourseDetails from "./pages/CourseDetails";
+import UpdateHeaderRegion from "./pages/HeaderRegion";
+import CoreDetailsUpdate from "./pages/CoreUpdate";
+import AboveFooterUpdate from "./pages/AboveFooter";
 
 function App() {
   return (
@@ -90,6 +93,30 @@ function App() {
             element={
               <UserDashboardLayout>
                 <PaymentPage />
+              </UserDashboardLayout>
+            }
+          />
+          <Route
+            path="/HeaderRegion"
+            element={
+              <UserDashboardLayout>
+                <UpdateHeaderRegion />
+              </UserDashboardLayout>
+            }
+          />
+          <Route
+            path="/CoreUpdate"
+            element={
+              <UserDashboardLayout>
+                <CoreDetailsUpdate />
+              </UserDashboardLayout>
+            }
+          />
+          <Route
+            path="/abovefooter"
+            element={
+              <UserDashboardLayout>
+                <AboveFooterUpdate />
               </UserDashboardLayout>
             }
           />

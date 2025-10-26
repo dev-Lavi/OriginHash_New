@@ -19,6 +19,10 @@ import {
   LogOut,
   ChevronDown,
   PenTool,
+  Edit,
+  Layers,
+  FileEdit,
+  Footprints,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -26,6 +30,7 @@ const Sidebar = ({ onItemClick }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [certDropOpen, setCertDropOpen] = useState(false);
+  const [updateDropOpen, setUpdateDropOpen] = useState(false);
 
   useEffect(() => {
     if (
@@ -50,6 +55,12 @@ const Sidebar = ({ onItemClick }) => {
       icon: BookOpen,
       path: "/admin/courses-list",
     },
+            {
+      id: "Manage Users",
+      label: "Manage Users",
+      icon: Users,
+      path: "/update-users",
+    },
     {
       id: "certificates",
       label: "Certificates",
@@ -59,6 +70,20 @@ const Sidebar = ({ onItemClick }) => {
         { id: "issue", label: "Issue", icon: PenTool, path: "/admin/issue-certificate" },
         { id: "issued", label: "Issued", icon: FileCheck, path: "/admin/issued-certificates" },
         { id: "verified", label: "Verified", icon: CheckCircle, path: "/admin/verified-certificates" },
+      ],
+    },
+    {
+      id: "update-details",
+      label: "Update Details",
+      icon: Edit,
+      hasDropdown: true,
+      dropdownState: updateDropOpen,
+      setDropdownState: setUpdateDropOpen,
+      subItems: [
+        { id: "update-header", label: "Header Region", icon: Layers, path: "/HeaderRegion" },
+        { id: "update-core", label: "Core Details", icon: FileEdit, path: "/CoreUpdate" },
+        { id: "update-above-footer", label: "Above Footer", icon: Layers, path: "/abovefooter" },
+        { id: "update-footer", label: "Footer", icon: Footprints, path: "/update-footer" },
       ],
     },
   ];

@@ -33,6 +33,8 @@ import CourseDetails from "./pages/CourseDetails";
 import UpdateHeaderRegion from "./pages/HeaderRegion";
 import CoreDetailsUpdate from "./pages/CoreUpdate";
 import AboveFooterUpdate from "./pages/AboveFooter";
+import UpdateFooter from "./pages/UpdateFooter";
+import UserManagement from "./pages/UserManagement";
 
 function App() {
   return (
@@ -122,6 +124,24 @@ function App() {
           />
 
                     <Route
+            path="/update-footer"
+            element={
+              <UserDashboardLayout>
+                <UpdateFooter />
+              </UserDashboardLayout>
+            }
+          />
+
+          <Route
+            path="/update-users"
+            element={
+              <UserDashboardLayout>
+                <UserManagement />
+              </UserDashboardLayout>
+            }
+          />
+
+                    <Route
             path="admin/issue-certificate"
             element={
               <DashboardLayout>
@@ -166,6 +186,40 @@ function App() {
             element={
               <DashboardLayout>
                 <AdminCourses />
+              </DashboardLayout>
+            }
+          />
+
+                    <Route
+            path="/HeaderRegion"
+            element={
+              <DashboardLayout>
+                <UpdateHeaderRegion />
+              </DashboardLayout>
+            }
+          />
+          <Route
+            path="/CoreUpdate"
+            element={
+              <DashboardLayout>
+                <CoreDetailsUpdate />
+              </DashboardLayout>
+            }
+          />
+          <Route
+            path="/abovefooter"
+            element={
+              <DashboardLayout>
+                <AboveFooterUpdate />
+              </DashboardLayout>
+            }
+          />
+
+          <Route
+            path="/update-footer"
+            element={
+              <DashboardLayout>
+                <UpdateFooter />
               </DashboardLayout>
             }
           />

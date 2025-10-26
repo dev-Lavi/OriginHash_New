@@ -111,6 +111,12 @@ const Sidebar = ({ onItemClick }) => {
         },
       ],
     },
+        {
+      id: "Manage Users",
+      label: "Manage Users",
+      icon: Users,
+      path: "/update-users",
+    },
     {
       id: "services",
       label: "Services",

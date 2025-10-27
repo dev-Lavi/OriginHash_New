@@ -35,6 +35,10 @@ import CoreDetailsUpdate from "./pages/CoreUpdate";
 import AboveFooterUpdate from "./pages/AboveFooter";
 import UpdateFooter from "./pages/UpdateFooter";
 import UserManagement from "./pages/UserManagement";
+import UpdateCompanyInfo from "./pages/UpdateCompanyInfo";
+import AdminDashboard from "./pages/AdminDashboard";
+import UpdateProfile from "./pages/UpdateProfile";
+
 
 function App() {
   return (
@@ -137,6 +141,33 @@ function App() {
             element={
               <UserDashboardLayout>
                 <UserManagement />
+              </UserDashboardLayout>
+            }
+          />
+
+          <Route
+            path="/update-company-info"
+            element={
+              <UserDashboardLayout>
+                <UpdateCompanyInfo />
+              </UserDashboardLayout>
+            }
+          />
+
+          <Route
+            path="/profile"
+            element={
+              <UserDashboardLayout>
+                <UpdateProfile />
+              </UserDashboardLayout>
+            }
+          />
+
+          <Route
+            path="/admin-dashboard"
+            element={
+              <UserDashboardLayout>
+                <AdminDashboard />
               </UserDashboardLayout>
             }
           />

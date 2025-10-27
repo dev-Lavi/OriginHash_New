@@ -25,6 +25,7 @@ import {
   FileEdit,
   Layers,
   FootprintsIcon,
+  User,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -59,7 +60,7 @@ const Sidebar = ({ onItemClick }) => {
       id: "dashboard",
       label: "Dashboard",
       icon: LayoutDashboard,
-      path: "/dashboard",
+      path: "/admin-dashboard",
     },
     {
       id: "courses",
@@ -86,6 +87,12 @@ const Sidebar = ({ onItemClick }) => {
       setDropdownState: setUpdateDropOpen,
       subItems: [
         { 
+          id: "update-company-info", 
+          label: "Company Info", 
+          icon: FileEdit, 
+          path: "/update-company-info" 
+        },
+        { 
           id: "update-header", 
           label: "Header Region", 
           icon: Layers, 
@@ -110,6 +117,12 @@ const Sidebar = ({ onItemClick }) => {
           path: "/update-footer" 
         },
       ],
+    },
+    {
+      id: "Profile",
+      label: "Profile",
+      icon: User,
+      path: "/profile",
     },
         {
       id: "Manage Users",

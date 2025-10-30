@@ -68,7 +68,7 @@ const Register = () => {
 
   return (
     <div className="flex items-center justify-center bg-[#726c91] min-h-screen p-4 sm:p-6 md:p-8">
-      <div className="w-full max-w-[1200px] min-h-[550px] sm:min-h-[600px] lg:h-[90vh] bg-[#312a42] rounded-[24px] sm:rounded-[32px] shadow-2xl flex flex-col lg:flex-row overflow-hidden">
+      <div className="w-full max-w-[1300px] min-h-[550px] sm:min-h-[600px] lg:h-[90vh] bg-[#312a42] rounded-[24px] sm:rounded-[32px] shadow-2xl flex flex-col lg:flex-row overflow-hidden">
         {/* Left Section */}
         <div className="hidden lg:flex flex-col w-full lg:w-[50%] bg-[#342f49] relative">
           {/* Header */}

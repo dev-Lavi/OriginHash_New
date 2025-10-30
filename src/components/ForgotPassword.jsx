@@ -1,106 +1,168 @@
 import { FaEnvelope } from "react-icons/fa";
-import illustration from "../assets/illustarion.png";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useState, useEffect } from "react";
+import { toast, ToastContainer } from "react-toastify";
 import axiosInstance from "../api/axiosInstance";
+import "react-toastify/dist/ReactToastify.css";
+import Logo from "/glowlogo.svg";
+import Slide1 from "../assets/flower.png";
+import Slide2 from "../assets/gate.png";
+import Slide3 from "../assets/window.png";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const slides = [
+    { image: Slide1, id: 0 },
+    { image: Slide2, id: 1 },
+    { image: Slide3, id: 2 }
+  ];
+
+  // Slideshow functionality
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!email) {
+      toast.error("Please enter your email address");
+      return;
+    }
+
     try {
+      setLoading(true);
       const res = await axiosInstance.post("/api/v1/users/forgot-password", { email });
-      toast.success("Reset link sent successfully!");
+      toast.success("Reset link sent successfully! Check your email.");
       setEmail("");
     } catch (error) {
       console.error(error);
-      toast.error("Error sending reset link.");
+      toast.error(error.response?.data?.message || "Error sending reset link.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#6C4CFF]/50 to-[#edeef7]/60 p-4 relative">
-      {/* White circle top-left */}
-      <span className="absolute z-0 hidden sm:block"
-        style={{
-          top: '0',
-          left: '0',
-          width: '7rem',
-          height: '7rem',
-          borderRadius: '50%',
-          background: 'white',
-          opacity: 0.8,
-          boxShadow: '0 0 40px 0 #e0e7ff'
-        }}
-      ></span>
+    <div className="flex items-center justify-center bg-[#726c91] min-h-screen p-4 sm:p-6 md:p-8">
+      <div className="w-full max-w-[1000px] min-h-[550px] sm:min-h-[600px] lg:h-[90vh] bg-[#312a42] rounded-[24px] sm:rounded-[32px] shadow-2xl flex flex-col lg:flex-row overflow-hidden">
+        {/* Left Section - Slideshow */}
+        <div className="hidden lg:flex flex-col w-full lg:w-[50%] bg-[#342f49] relative">
+          {/* Header */}
+          <div className="absolute top-0 left-0 right-0 z-10 flex items-center justify-between p-4 sm:p-6 lg:p-8">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <img src={Logo} alt="OriginHash Logo" className="w-8 h-8 sm:w-10 sm:h-10" />
+              <span className="text-white text-lg sm:text-xl font-semibold">OriginHash</span>
+            </div>
+          </div>
 
-      {/* Purple circle bottom-right */}
-      <span className="absolute z-0 hidden sm:block"
-        style={{
-          bottom: '0',
-          right: '0',
-          width: '7rem',
-          height: '7rem',
-          borderRadius: '50%',
-          background: '#735FFF',
-          opacity: 0.7,
-          boxShadow: '0 0 40px 0 #7568ff44'
-        }}
-      ></span>
+          {/* Slideshow Container */}
+          <div className="h-full w-full">
+            {slides.map((slide, index) => (
+              <div
+                key={slide.id}
+                className={`absolute inset-0 transition-opacity duration-1000 ${
+                  currentSlide === index ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                <img
+                  src={slide.image}
+                  alt={`Slide ${index + 1}`}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
 
-      <div className="bg-white rounded-3xl shadow-xl w-full max-w-3xl grid md:grid-cols-2 overflow-hidden relative z-10 mt-0 md:mt-8">
-        {/* Right Illustration */}
-        <div className="bg-[#735fff] hidden md:flex items-center justify-center">
-          <img src={illustration} alt="Illustration" className="w-[50%] max-w-md drop-shadow-xl rounded-2xl" />
+          {/* Footer */}
+<div className="absolute bottom-0 left-0 right-0 z-10 p-4 sm:p-6 lg:p-8">
+  <div className="text-center">
+    <p className="text-black text-lg sm:text-xl font-medium mb-3 sm:mb-4">
+      "Security isn't just about stopping threats.<br />It's about enabling trust."
+    </p>
+    <div className="flex gap-2 justify-center">
+      {slides.map((_, index) => (
+        <span
+          key={index}
+          className={`h-1.5 sm:h-2 ${
+            currentSlide === index ? "w-8 sm:w-12 bg-white" : "w-6 sm:w-8 bg-[#c5c5c5]"
+          } rounded-full transition-all`}
+        />
+      ))}
+    </div>
+  </div>
+</div>
+
         </div>
 
-        {/* Left Form */}
-        <div className="flex flex-col justify-center p-6 overflow-y-auto">
-          <h2 className="text-3xl font-bold text-center mb-2">FORGOT PASSWORD</h2>
-          <p className="text-center text-gray-500 mb-6">Enter your email and we'll send you a reset link</p>
+        {/* Right Section - Form */}
+        <div className="flex-1 p-4 sm:p-6 lg:p-8 flex flex-col justify-center">
+          {/* Show logo and back button on mobile */}
+          <div className="flex lg:hidden items-center justify-between mb-6">
+            <div className="flex items-center gap-2">
+              <img src={Logo} alt="OriginHash Logo" className="w-8 h-8" />
+              <span className="text-white text-xl font-semibold">OriginHash</span>
+            </div>
+            <button
+              onClick={() => navigate("/")}
+              className="bg-[#6c4cff] text-white px-3 py-1.5 rounded-full text-sm hover:bg-[#5541b3] transition"
+            >
+              Back →
+            </button>
+          </div>
 
-          <form className="space-y-4" onSubmit={handleSubmit}>
-            <div className="flex items-center gap-2 bg-gray-100 px-4 py-2.5 rounded-xl">
-              <FaEnvelope className="text-gray-400 text-sm" />
+          <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">Forgot Password?</h1>
+          <p className="text-white mb-6 sm:mb-8 text-sm sm:text-base">
+            Enter your email and we'll send you a reset link
+          </p>
+
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Email Input */}
+            <div className="relative">
+              <FaEnvelope className="absolute left-3 top-1/2 -translate-y-1/2 text-[#a1dbec]" />
               <input
                 type="email"
-                required
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="bg-transparent w-full outline-none text-sm"
+className="w-full bg-[#6b5ebb]/20 border-2 border-[#7764ad] rounded-lg p-2.5 sm:p-3 pl-10 sm:pl-12 text-sm sm:text-base text-white placeholder:text-white/60"
+
+                required
               />
             </div>
 
+            {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-[#6C4CFF] hover:bg-[#5c3fe0] text-white py-2.5 rounded-xl shadow-md font-semibold transition text-sm"
+              disabled={loading}
+              className="w-full bg-[#6c4cff] text-white py-2.5 sm:py-3 rounded-lg text-sm sm:text-base font-medium hover:bg-[#5541b3] transition disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Send Reset Link
+              {loading ? "Sending..." : "Send Reset Link"}
             </button>
           </form>
 
           {/* Links */}
-          <div className="mt-8 flex flex-col items-center space-y-3">
+          <div className="mt-6 sm:mt-8 space-y-3 text-center">
             <button
-              className="text-[#6C4CFF] font-semibold hover:underline transition text-sm"
-              type="button"
               onClick={() => navigate("/")}
+              className="text-[#6c4cff] hover:underline text-sm sm:text-base font-medium block"
             >
-              Back to Login
+              ← Back to Login
             </button>
-            <p className="text-gray-600">
-              Need an account?
+            <p className="text-white text-sm sm:text-base">
+              Don't have an account?{" "}
               <button
-                className="ml-2 text-[#6C4CFF] font-semibold hover:underline transition text-sm"
-                type="button"
                 onClick={() => navigate("/register")}
+                className="text-[#6c4cff] hover:underline font-medium"
               >
                 Register
               </button>
